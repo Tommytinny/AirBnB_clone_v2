@@ -16,10 +16,11 @@ def states_list():
     display state list html
     """
     states = storage.all(State)
-    return render_template('7-states_list.html', states=states)
+    state_list = list(states.values())
+    return render_template('7-states_list.html', states=state_list)
 
 @app.teardown_appcontext
-def close_storage(exception=None):
+def close_storage(exception):
     """
     Function to be called when the application context is torn down.
     Closes the SQLAlchemy session.
