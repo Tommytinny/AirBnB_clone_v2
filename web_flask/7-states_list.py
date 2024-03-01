@@ -3,6 +3,7 @@
 script that starts a Flask web application
 web application must be listening on 0.0.0.0, port 5000
 """
+from os import getenv
 from flask import Flask, render_template
 from models import storage
 from models.state import State
@@ -27,4 +28,6 @@ def close_storage(exception=None):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    host = getenv("HBNB_API_HOST") if getenv("HBNB_API_HOST") else "0.0.0.0"
+    port = getenv("HBNB_API_PORT") if getenv("HBNB_API_PORT") else 5000
+    app.run(host=host, port=port, debug=True)
