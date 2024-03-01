@@ -15,9 +15,8 @@ def states_list():
     """
     display state list html
     """
-    states = storage.all(State)
-    state_list = list(states.values())
-    return render_template('7-states_list.html', states=state_list)
+    states = storage.all(State)  
+    return render_template('7-states_list.html', states=state.values())
 
 @app.teardown_appcontext
 def close_storage(exception):
